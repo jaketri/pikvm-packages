@@ -7,6 +7,7 @@ pkgdesc="Software watchdog for Linux"
 url="http://sourceforge.net/projects/watchdog"
 license=(GPL)
 arch=(i686 x86_64 armv6h armv7h aarch64)
+makedepends=(git)
 backup=(etc/watchdog.conf)
 source=(
 	${pkgname}::"git+https://git.code.sf.net/p/watchdog/code#commit=${_commit}"
