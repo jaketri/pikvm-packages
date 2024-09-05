@@ -209,6 +209,9 @@ for _variant in "${_variants[@]}"; do
 		pkgdesc=\"PiKVM platform configs - $_platform for $_board\"
 		depends=(kvmd=$pkgver-$pkgrel \"linux-rpi-pikvm>=6.6.45-1\" \"raspberrypi-bootloader-pikvm>=20240818-1\")
 
+		# hack to remove pikvm kernel and pikvm bootloader depends
+		depends=(kvmd=$pkgver-$pkgrel)
+
 		backup=(
 			etc/sysctl.d/99-kvmd.conf
 			etc/udev/rules.d/99-kvmd.rules
@@ -270,8 +273,6 @@ for _variant in "${_variants[@]}"; do
 			echo '#!/bin/bash' > \"\$pkgdir/usr/bin/vcgencmd\"
 			echo '[[ \$1 == \"get_throttled\" ]] && echo \"throttled=0x0\"' >> \"\$pkgdir/usr/bin/vcgencmd\"
 			chmod +x \"\$pkgdir/usr/bin/vcgencmd\"
-			# hack to remove pikvm kernel depends for generic platform
-			depends=(kvmd=$pkgver-$pkgrel)
 		fi
 	}"
 done
