@@ -157,6 +157,9 @@ backup=(
 	etc/kvmd/web.css
 )
 
+# add back generic support removed upstream in v4.28
+source=( "${source[@]}" v2-hdmiusb-generic.yaml v2-hdmiusb-generic.rules )
+md5sums=( "${md5sums[@]}" 812076889fb5abe8c9fc691536606cf5 ba660e5b2ae54339bd8596c91d4186e0 )
 
 package_kvmd() {
 	install=$pkgname.install
@@ -220,6 +223,10 @@ for _variant in "${_variants[@]}"; do
 
 		# hack to remove pikvm kernel and pikvm bootloader depends
 		depends=(kvmd=$pkgver-$pkgrel)
+
+		# add back generic support removed upstream in v4.28
+		[ -f configs/os/udev/v2-hdmiusb-generic.rules  ] || cp ../v2-hdmiusb-generic.rules configs/os/udev/v2-hdmiusb-generic.rules
+		[ -f configs/kvmd/main/v2-hdmiusb-generic.yaml ] || cp ../v2-hdmiusb-generic.yaml configs/kvmd/main/v2-hdmiusb-generic.yaml
 
 		backup=(
 			etc/sysctl.d/99-kvmd.conf
