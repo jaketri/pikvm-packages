@@ -166,7 +166,7 @@ package_kvmd() {
 
 	cd "$srcdir/kvmd-$pkgver"
 	# hack to avoid endless errors about missing serial-number on generic aarch64
-	[[ $CARCH == "aarch64" ]] && sed -i "s/(\(\"serial-number\"\)\(.*\)$/(\"model\"\2 # \1 missing on generic DT\!/g" kvmd/apps/kvmd/info/hw.py
+	[[ $CARCH == "aarch64" ]] && sed -i "s/(\(\"serial-number\"\)\(.*\)$/(\"model\"\2 # \1 missing on generic DT\!/g" kvmd/apps/kvmd/info/system.py
 	pip install --root="$pkgdir" --no-deps .
 
 	install -Dm755 -t "$pkgdir/usr/bin" scripts/kvmd-{bootconfig,gencert,certbot}
