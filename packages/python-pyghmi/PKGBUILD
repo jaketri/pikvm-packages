@@ -12,7 +12,7 @@ depends=(
 	python-dateutil
 	python-six
 )
-makedepends=(python-distribute)
+makedepends=(git python-distribute)
 source=(${pkgname}::"git+https://opendev.org/x/pyghmi#commit=${pkgver}")
 md5sums=(SKIP)
 
